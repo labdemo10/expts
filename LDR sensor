@@ -1,13 +1,18 @@
+vcc-----pin 2
+gnd-----pin 6
+data/pin---------16
+
+
 import RPi.GPIO as GPIO
 import time
 
-sensor = 16  # change this to the pin connected to the LDR
+data = 16 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(pin, GPIO.IN)
+GPIO.setup(data, GPIO.IN)
 
 try:
     while True:
-        print(GPIO.input(pin))
-        time.sleep(0.5)  # add a delay to prevent the program from running too fast
+        print(GPIO.input(data))
+        time.sleep(0.5)  
 except KeyboardInterrupt:
     GPIO.cleanup()
