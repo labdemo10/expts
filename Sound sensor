@@ -16,5 +16,8 @@ try:
 			print (“Sound Detected”)
 		else:
 			print (“No Sound Detected” )
+			
+		time.sleep(0.2)
+		
 except KeyboardInterrupt :
 	GPIO.cleanup()
