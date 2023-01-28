@@ -8,9 +8,9 @@
   
 import RPI.GPIO as GPIO
 import time
-GPIO.setmode (GPIO.BCM)
-TRIG_PIN=11
-ECHO_PIN=12
+GPIO.setmode (GPIO.BOARD)
+TRIG_PIN=23
+ECHO_PIN=32
 GPIO.setup(TRIG_PIN,GPIO.OUT)
 GPIO.setup(ECHO_PIN,GPIO.IN) 
 GPIO.output(TRIG_PIN,GPIO.LOW) 
