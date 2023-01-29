@@ -7,7 +7,9 @@
 •	MOSI ----- Pin 11
 •	SCK ------   Pin 13
 •	MISO ------  Pin 12
+
 	Code for Transmitter
+	
     #include <SPI.h>
     #include <nRF24L01.h>
     #include <RF24.h>
