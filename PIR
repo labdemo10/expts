@@ -12,10 +12,13 @@ import time
 GPIO.setmode(GPIO.BOARD)
 
 pir_pin = 16
-
+led=18
 GPIO.setup(pir_pin, GPIO.IN)
 
 while True:
     if GPIO.input(pir_pin):
+        GPIO.output(led, 1)
         print("Motion detected!")
+    else:
+        GPIO.output(led, 0)
     time.sleep(0.5)
