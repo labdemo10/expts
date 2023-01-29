@@ -1,3 +1,11 @@
+vcc--------2
+gnd--------6
+data/pin----16
+led(+ve)------18
+led(-ve)------20(gnd)
+
+
+
 import RPi.GPIO as GPIO
 import time
 
