@@ -1,0 +1,71 @@
+--------TRANSMITTER----------
+
+import RPi.GPIO as GPIO
+import time
+import socket
+
+GPIO.setmode(GPIO.BCM)
+
+# GPIO pin numbers
+CE = 25
+CSN = 8
+
+GPIO.setup(CE, GPIO.OUT)
+GPIO.setup(CSN, GPIO.OUT)
+
+GPIO.output(CE, GPIO.LOW)
+GPIO.output(CSN, GPIO.HIGH)
+
+# Data to be sent
+data = "Hello from Raspberry Pi 1"
+
+# Create a socket and bind it to a specific port
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('', 12345))
+s.listen(1)
+
+# Wait for a connection
+conn, addr = s.accept()
+print('Connected by', addr)
+
+# Send the data
+conn.sendall(data.encode())
+
+# Close the connection
+conn.close()
+s.close()
+
+GPIO.cleanup()
+
+
+
+-----------RECEIVER--------------
+
+import RPi.GPIO as GPIO
+import time
+import socket
+
+GPIO.setmode(GPIO.BCM)
+
+# GPIO pin numbers
+CE = 25
+CSN = 8
+
+GPIO.setup(CE, GPIO.OUT)
+GPIO.setup(CSN, GPIO.OUT)
+
+GPIO.output(CE, GPIO.LOW)
+GPIO.output(CSN, GPIO.HIGH)
+
+# Create a socket and connect to the transmitter
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('<IP address of Raspberry Pi 1>', 12345))
+
+# Receive the data
+data = s.recv(1024).decode()
+print("Received data:", data)
+
+# Close the socket
+s.close()
+
+GPIO.cleanup()
